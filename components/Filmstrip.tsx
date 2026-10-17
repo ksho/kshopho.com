@@ -87,6 +87,7 @@ export function Filmstrip({ photos }: Props) {
                 key={photo.id}
                 id={`photo-${photo.id}`}
                 className={`filmstrip__item filmstrip__item--${orientation}`}
+                style={{ "--w": photo.width, "--h": photo.height, "--focal": photo.focal } as CSSProperties}
                 onClick={onItemClick}
               >
                 <Image
@@ -99,7 +100,6 @@ export function Filmstrip({ photos }: Props) {
                   priority={index < 2}
                   loading={index < 2 ? undefined : "lazy"}
                   sizes={`(max-width: 900px) 100vw, calc(80vh * ${ratio.toFixed(4)})`}
-                  style={{ "--focal": photo.focal } as CSSProperties}
                   onLoad={(e) => e.currentTarget.classList.add("is-loaded")}
                 />
               </figure>

@@ -471,24 +471,22 @@ body.layout-snap .filmstrip__frame {
     height: 100%;
     overflow-x: auto;
   }
+  /* The frame's width comes from the photo's aspect ratio (set as --w/--h),
+     so the layout is stable before the image has loaded. */
   .filmstrip__item {
-    display: flex;
-    flex: 0 1 0;
-    flex-direction: column;
+    aspect-ratio: var(--w, 3) / var(--h, 2);
+    flex: 0 0 auto;
     height: 100%;
-    justify-content: center;
-    width: min-content;
+    position: relative;
   }
   .filmstrip__img {
     display: block;
     height: 100%;
-    max-height: 100%;
-    min-height: 0;
     object-fit: cover;
     object-position: var(--focal, 50% 50%);
     opacity: 0;
     transition: opacity 0.5s ease-out;
-    width: auto;
+    width: 100%;
   }
   .filmstrip__img.is-loaded {
     opacity: 1;
@@ -510,16 +508,15 @@ body.layout-snap .filmstrip__frame {
     grid-template-columns: 1fr;
   }
   .filmstrip__item {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    aspect-ratio: var(--w, 3) / var(--h, 2);
     position: relative;
+    width: 100%;
   }
   .filmstrip__img {
     display: block;
-    height: auto;
-    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--focal, 50% 50%);
     width: 100%;
   }
 }
